@@ -10,4 +10,7 @@ declare global {
       [elem: string]: any;
     }
   }
+  interface NodeRequire {
+    context: (path: string, deepSearch: boolean, testReg: RegExp) => any;
+  }
 }
