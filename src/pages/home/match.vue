@@ -5,18 +5,23 @@
     :bottom-method="loadBottom"
     :bottom-all-loaded="allLoaded"
     ref="loadmore"
+    key="b"
   >
-    <ul>
-      <li v-for="item in 50" :key="item">{{ item }}</li>
-    </ul>
+    <div>
+      <div v-for="item in 50" :key="item">{{ item }}</div>
+    </div>
   </mt-loadmore>
 </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-
-@Component
+import { Loadmore } from 'mint-ui';
+@Component({
+  components: {
+    [Loadmore.name]: Loadmore,
+  },
+})
 export default class Match extends Vue {
   data() {
     return {
@@ -28,9 +33,19 @@ export default class Match extends Vue {
     (this.$refs.loadmore as any).onTopLoaded();
   }
   loadBottom() {
-    console.log('scroll bottom');
+    console.log('scroll bottom', this.$refs.loadmore);
     this.$data.allLoaded = true; // 若数据已全部获取完毕
     (this.$refs.loadmore as any).onBottomLoaded();
+  }
+  mounted() {
+    this.scrollToTop();
+  }
+  scrollToTop() {
+    const scrollTarget = (this.$refs.loadmore as any).scrollEventTarget;
+    if (!scrollTarget) {
+      return;
+    }
+    scrollTarget.scrollTo(0, 0);
   }
 }
 </script>

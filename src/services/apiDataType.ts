@@ -22,6 +22,11 @@ export interface IUserListItem {
   wechatHeadImg: string;
   wechatId: string;
   wechatName: string;
+  // account
+  headImg: string;
+  balance: number;
+  id: number;
+  userName: string;
 }
 
 // lives

@@ -49,7 +49,7 @@ export default new Router({
     },
     {
       path: '/login',
-      component: () => import(/* webpackChunkName: "login" */ './pages/login/login.vue'),
+      component: () => import(/* webpackChunkName: "login" */ './pages/user/login.vue'),
     },
     {
       path: '/user',

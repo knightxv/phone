@@ -101,11 +101,11 @@ class Http {
             return res;
         });
     }
-    public post(url: string, params?: any): Promise<IApiData> {
+    public post(url: string, params?: any, headers?: any): Promise<IApiData> {
         console.group(`request[post]:${url}`);
         console.log('params : ', params);
         console.groupEnd();
-        return this.resolveResponse(axios.post(`${baseURL}${url}`, params), url, 'post');
+        return this.resolveResponse(axios.post(`${baseURL}${url}`, params, headers), url, 'post');
     }
     public get(url: string, params?: any): Promise<IApiData> {
         console.group(`request[get]:${url}`);

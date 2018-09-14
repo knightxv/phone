@@ -4,11 +4,11 @@
     <div class="flex">
       <div class="user-avatar">
         <router-link to="/user/editInfo">
-          <app-net-img :imgUrl="myUserInfo.wechatHeadImg" radius></app-net-img>
+          <app-net-img :imgUrl="myUserInfo.headImg" radius></app-net-img>
         </router-link>
       </div>
-      <div class="user-info">
-        <div class="user-info-name">{{ myUserInfo.wechatName || '无名者' }}</div>
+      <div class="user-info-wrap">
+        <div class="user-info-name">{{ myUserInfo.wechatName || '无名者2222' }}</div>
         <div class="role-tag">球迷</div>
       </div>
     </div>
@@ -60,11 +60,12 @@ export default class Mime extends Vue {
   margin-top: 20px;
 }
 .role-tag {
-  font-size: 14px;
-  padding: 8px 0px;
+  font-size: 24px;
+  padding: 8px 10px;
   border-radius: 10px;
   border: 1px solid #fff;
   text-align: center;
+  display: inline-block;
 }
 // .possessions-info-module {
 //   margin-top: 20px;

@@ -3,15 +3,16 @@
     <mt-tab-container v-model="active">
       <mt-tab-container-item :id="tab.id" v-for="tab in tabs" :key="tab.id">
         <div class="tab-container">
-          <match v-if="tab.id == 'match'"></match>
-          <live v-if="tab.id == 'live'"></live>
-          <mime v-if="tab.id == 'mime'"></mime>
+          <match v-if="tab.id == 'match' && active == 'match'"></match>
+          <live v-if="tab.id == 'live' && active == 'live'"></live>
+          <mime v-if="tab.id == 'mime' && active == 'mime'"></mime>
         </div>
       </mt-tab-container-item>
     </mt-tab-container>
     <mt-tabbar v-model="active">
       <mt-tab-item v-for="tab in tabs" :key="tab.id" :id="tab.id">
-        {{ tab.label }}
+        <i :class="`iconfont icon-${tab.icon}`"></i>
+        <div class="tab-name">{{ tab.label }}</div>
       </mt-tab-item>
     </mt-tabbar>
   </div>
@@ -47,14 +48,17 @@ export default class Home extends Vue {
         {
           id: 'match',
           label: '赛事',
+          icon: 'trophy',
         },
         {
           id: 'live',
           label: '直播',
+          icon: 'live',
         },
         {
           id: 'mime',
           label: '我的',
+          icon: 'user',
         },
       ],
     };
@@ -77,6 +81,12 @@ export default class Home extends Vue {
   overflow: auto;
 }
 .tab-container {
-  padding-bottom: 30px;
+  padding-bottom: 94px;
+}
+.tab-name {
+  padding-top: 6px;
+}
+.iconfont {
+  font-size: 36px;
 }
 </style>

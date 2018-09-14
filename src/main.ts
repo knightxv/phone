@@ -4,6 +4,11 @@ import router from './router';
 import store from './stores/store';
 import Fastclick from 'fastclick';
 import './mint-ui/mint-ui';
+import './app/assets/icon/iconfont.css';
+
+// picture upload
+import Croppa from 'vue-croppa';
+Vue.use(Croppa);
 
 import app from './app/index';
 Vue.use(app);

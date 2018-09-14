@@ -3,7 +3,7 @@ import formatter from './formatter';
 import * as typeDef from './typeDef';
 import * as helps from './helps';
 import config from './config';
-// import AppUpload from './component/AppUpload.vue';
+import AppUploadImg from './component/AppUploadImg.vue';
 import AppNetImg from './component/AppNetImg.vue';
 import AppLocalImg from './component/AppLocalImg.vue';
 import { Toast } from 'mint-ui';
@@ -31,7 +31,7 @@ class App {
             });
           },
         };
-        // Vue.component('app-upload', AppUpload);
+        Vue.component('app-upload-img', AppUploadImg);
         Vue.component('app-net-img', AppNetImg);
         Vue.component('app-local-img', AppLocalImg);
     }

@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import ApiCom from '@/services/common/common';
+import ApiCom from '@/services/common';
 import ApiAccount from '@/services/account';
 @Component
 export default class Register extends Vue {

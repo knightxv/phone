@@ -8,6 +8,7 @@ declare module '*.vue' {
 
 declare module 'mint-ui';
 declare module 'fastclick';
+declare module 'vue-croppa';
 
 // declare module 'vue-lazyload';
 

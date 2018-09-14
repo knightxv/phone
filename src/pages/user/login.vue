@@ -26,18 +26,20 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { IUserInfoState } from '../../stores/modules/userInfo';
-import { Mutation } from 'vuex-class';
+import { Mutation, Action } from 'vuex-class';
 import { UPDATE_USER_INFO } from '../../stores/mutation-types';
-import ApiCom from '@/services/common/common';
+import { UPDATE_USER_ACCOUNT_INFO_ASYNC } from '@/stores/action-types';
+import ApiCom from '@/services/common';
 import ApiAccount from '@/services/account';
 @Component
 export default class Login extends Vue {
   @Mutation UPDATE_USER_INFO!: (userInfo: IUserInfoState) => {};
+  @Action UPDATE_USER_ACCOUNT_INFO_ASYNC!: () => {};
   data() {
     return {
       loginForm: {
         phoneNum: '18396580005',
-        idCode: '',
+        idCode: '1234',
       },
     };
   }
@@ -54,6 +56,7 @@ export default class Login extends Vue {
       return;
     }
     this.UPDATE_USER_INFO(res.data);
+    this.UPDATE_USER_ACCOUNT_INFO_ASYNC();
     this.$router.push('/home/match');
   }
 }
@@ -70,7 +73,7 @@ export default class Login extends Vue {
   height: 100%;
   // background: #f3f3f3;
   background: url(../../app/assets/img/login_bg.jpg) no-repeat;
-  // background-size: 100% 100%;
+  background-size: 100% 100%;
 }
 .login-wrap {
   width: 130px;

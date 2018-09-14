@@ -1,12 +1,14 @@
 import http from '@/app/http';
 
 export default {
-  // uploadImage() {
-  //   const imgFormData = {};
-  //   return http.post('/upload/image/admin', {
-  //     file: imgFormData,
-  //   });
-  // },
+  uploadImage(file: File) {
+    const imgFormData = new FormData();
+    imgFormData.append('file', file);
+    const config = {
+      headers: { 'Content-Type': 'multipart/form-data'},
+    };
+    return http.post('/api-common-server/upload/image/LIVEAPP', imgFormData, config);
+  },
   getPhoneIdCode(phoneNum: string, smsType: string) {
     return http.post('/api-common-server/phoneSms/getPhoneIdCode', {
       phoneNum,
