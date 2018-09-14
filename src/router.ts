@@ -38,9 +38,9 @@ export default new Router({
       component: Layout,
       children: [
         {
-          path: '/home',
+          path: '/home/:tabName',
           name: 'home',
-          component: () => import(/* webpackChunkName: "home" */ './pages/home.vue'),
+          component: () => import(/* webpackChunkName: "login" */ './pages/home.vue'),
           meta: {
             title: '首页',
           },
@@ -57,20 +57,47 @@ export default new Router({
       children: [
         {
           path: 'register',
-          component: () => import(/* webpackChunkName: "register" */ './pages/login/register.vue'),
+          component: () => import(/* webpackChunkName: "register" */ './pages/user/register.vue'),
           meta: {
             title: '新用户注册',
           },
         },
         {
           path: 'forgetPassword',
-          component: () => import(/* webpackChunkName: "forgetPassword" */ './pages/login/forgetPassword.vue'),
+          component: () => import(/* webpackChunkName: "forgetPassword" */ './pages/user/forgetPassword.vue'),
           meta: {
             title: '忘记密码',
           },
         },
+        {
+          path: 'editInfo',
+          component: () => import(/* webpackChunkName: "editInfo" */ './pages/user/editInfo.vue'),
+          meta: {
+            title: '账号资料',
+          },
+        },
+        {
+          path: 'edit/userName',
+          component: () => import(/* webpackChunkName: "editUserName" */ './pages/user/edit/userName.vue'),
+          meta: {
+            title: '修改昵称',
+          },
+        },
       ],
     },
-
+    // helper
+    {
+      path: '/help',
+      component: NavbarLayout,
+      children: [
+        {
+          path: 'feedback',
+          component: () => import(/* webpackChunkName: "feedback" */ './pages/help/feedback.vue'),
+          meta: {
+            title: '意见反馈',
+          },
+        },
+      ],
+    },
   ],
 });

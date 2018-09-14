@@ -4,11 +4,10 @@
       <app-local-img imgUrl="logo"></app-local-img>
     </div>
     <div class="form-wrap">
-      <mt-field label="用户名" placeholder="请输入用户名" v-model="loginForm.username"></mt-field>
-      <mt-field label="手机号" v-model="loginForm.phoneNum">
+      <mt-field class="app-field" label="手机号" v-model="loginForm.phoneNum">
         <mt-button @click="getVerifyCode" size="small" type="primary">获取验证码</mt-button>
       </mt-field>
-      <mt-field label="短信验证码" placeholder="请输入短信验证码" v-model="loginForm.idCode"></mt-field>
+      <mt-field class="app-field" label="短信验证码" placeholder="请输入短信验证码" v-model="loginForm.idCode"></mt-field>
       <div class="list-item flex space-between">
         <router-link to="/user/forgetPassword">
           <p>忘记密码</p>
@@ -37,7 +36,6 @@ export default class Login extends Vue {
   data() {
     return {
       loginForm: {
-        // username: '',
         phoneNum: '18396580005',
         idCode: '',
       },
@@ -56,16 +54,22 @@ export default class Login extends Vue {
       return;
     }
     this.UPDATE_USER_INFO(res.data);
-    this.$router.push('/home');
+    this.$router.push('/home/match');
   }
 }
 </script>
 
 <style scoped lang="less">
+.app-field {
+  background: #fcfaee40;
+  input {
+    background: none!important;
+  }
+}
 .login-container {
   height: 100%;
-  background: #f3f3f3;
-  // background: url(https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1643697067,2260173854&fm=27&gp=0.jpg) no-repeat;
+  // background: #f3f3f3;
+  background: url(../../app/assets/img/login_bg.jpg) no-repeat;
   // background-size: 100% 100%;
 }
 .login-wrap {

@@ -27,11 +27,11 @@ interface IApiRes {
 // 添加一个请求拦截器
 axios.interceptors.request.use(
   (config: any) => {
-    // const usrInfo = (store.state as any).userInfo;
-    // if (!usrInfo || !usrInfo.token) {
-    //     return config;
-    // }
-    // config.headers.Authorization = usrInfo.token;
+    const usrInfo = (store.state as any).userInfo;
+    if (!usrInfo || !usrInfo.token) {
+        return config;
+    }
+    config.headers.Authorization = usrInfo.token;
     return config;
   },
   (error: any) => {

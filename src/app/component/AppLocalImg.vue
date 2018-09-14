@@ -19,6 +19,7 @@ requireComponent.keys().forEach((fileName: string) => {
 @Component({
   props: {
     imgUrl: String,
+    errorImgUrl: String,
   },
 })
 export default class AppLocalImg extends Vue {
@@ -28,8 +29,8 @@ export default class AppLocalImg extends Vue {
     };
   }
   async mounted() {
-    const resourceUrl = this.$props.imgUrl;
-    this.$data.imgSource = resource[resourceUrl];
+    const { imgUrl, errorImgUrl } = this.$props;
+    this.$data.imgSource = resource[imgUrl] || resource[errorImgUrl];
   }
 }
 </script>

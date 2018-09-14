@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <keep-alive>
+    <!-- <keep-alive>
+    </keep-alive> -->
       <router-view></router-view>
-    </keep-alive>
   </div>
 </template>
 
@@ -35,7 +35,6 @@ export default class App extends Vue {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   height: 100%;
 }
@@ -61,13 +60,17 @@ a {
 }
 .list-item {
   padding: 0 20px;
-  align-items: center;
 }
 .flex {
   display: flex;
   flex-direction: row;
+  align-items: center;
   &.space-between {
     justify-content: space-between;
   }
+}
+// miti
+.mint-field-core {
+  background: none;
 }
 </style>

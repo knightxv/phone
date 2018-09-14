@@ -16,7 +16,7 @@ export default {
     phoneNum: string,
   }) {
     return http.post('/api-account/appAccount/phoneLogin', {
-      smsType: 'ADD_ACCOUNT',
+      smsType: 'LOGIN_ACCOUNT',
       systemType: 'LIVEAPP', // LIVEAPP, ACCOUNT
       ...params,
     });
