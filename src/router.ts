@@ -63,13 +63,6 @@ export default new Router({
           },
         },
         {
-          path: 'forgetPassword',
-          component: () => import(/* webpackChunkName: "forgetPassword" */ './pages/user/forgetPassword.vue'),
-          meta: {
-            title: '忘记密码',
-          },
-        },
-        {
           path: 'editInfo',
           component: () => import(/* webpackChunkName: "editInfo" */ './pages/user/editInfo.vue'),
           meta: {
@@ -95,6 +88,19 @@ export default new Router({
           component: () => import(/* webpackChunkName: "feedback" */ './pages/help/feedback.vue'),
           meta: {
             title: '意见反馈',
+          },
+        },
+      ],
+    },
+    {
+      path: '/match',
+      component: NavbarLayout,
+      children: [
+        {
+          path: 'detail/:matchId',
+          component: () => import(/* webpackChunkName: "feedback" */ './pages/match/detail.vue'),
+          meta: {
+            title: '赛会详情',
           },
         },
       ],

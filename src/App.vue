@@ -68,6 +68,12 @@ a {
   &.space-between {
     justify-content: space-between;
   }
+  &.center {
+    justify-content: center;
+  }
+  &.flex-end {
+    justify-content: flex-end;
+  }
 }
 // miti
 .mint-field-core {

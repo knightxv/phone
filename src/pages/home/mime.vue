@@ -4,7 +4,7 @@
     <div class="flex">
       <div class="user-avatar">
         <router-link to="/user/editInfo">
-          <app-net-img :imgUrl="myUserInfo.headImg" radius></app-net-img>
+          <app-net-img :imgUrl="myUserInfo.headImg" errorImgUrl="default_avatar" radius></app-net-img>
         </router-link>
       </div>
       <div class="user-info-wrap">

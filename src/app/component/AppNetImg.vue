@@ -1,6 +1,6 @@
 <template>
   <img :class="{ radius: !!radius}" v-if="imgSource" :src="imgSource" >
-  <app-local-img :class="{ radius: !!radius}" v-else imgUrl="default_avatar" ></app-local-img>
+  <app-local-img :class="{ radius: !!radius}" v-else :imgUrl="errorImgUrl" ></app-local-img>
 </template>
 
 <script lang="ts">
@@ -13,10 +13,18 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
       type: Boolean,
       default: false,
     },
+    errorImgUrl: {
+      type: String,
+      default: '',
+    },
   },
   computed: {
     imgSource() {
-      return this.$props.imgUrl ? `http://${this.$props.imgUrl}` : '';
+      const { imgUrl, errorImgUrl } = this.$props;
+      if (imgUrl) {
+        return `http://${this.$props.imgUrl}`;
+      }
+      return '';
     },
   },
 })

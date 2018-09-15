@@ -1,14 +1,18 @@
 <template>
-<div>
-  忘记密码
-</div>
+<i :class="`iconfont icon-${name}`"></i>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
-@Component
-export default class ForgetPassword extends Vue {
+@Component({
+  props: {
+    name: {
+      type: String,
+    },
+  },
+})
+export default class AppIcon extends Vue {
 }
 </script>
 

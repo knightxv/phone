@@ -6,6 +6,7 @@ import config from './config';
 import AppUploadImg from './component/AppUploadImg.vue';
 import AppNetImg from './component/AppNetImg.vue';
 import AppLocalImg from './component/AppLocalImg.vue';
+import AppIcon from './component/AppIcon.vue';
 import { Toast } from 'mint-ui';
 
 // export default {
@@ -34,6 +35,7 @@ class App {
         Vue.component('app-upload-img', AppUploadImg);
         Vue.component('app-net-img', AppNetImg);
         Vue.component('app-local-img', AppLocalImg);
+        Vue.component('app-icon', AppIcon);
     }
 }
 

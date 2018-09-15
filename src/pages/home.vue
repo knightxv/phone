@@ -77,11 +77,14 @@ export default class Home extends Vue {
 </script>
 
 <style scoped lang="less">
+@import url('../main.less');
 .container {
   overflow: auto;
 }
 .tab-container {
-  padding-bottom: 94px;
+  padding-bottom: @tabbar-height;
+  height: 100vh;
+  box-sizing: border-box;
 }
 .tab-name {
   padding-top: 6px;

@@ -4,14 +4,11 @@
       <app-local-img imgUrl="logo"></app-local-img>
     </div>
     <div class="form-wrap">
-      <mt-field class="app-field" label="手机号" v-model="loginForm.phoneNum">
+      <mt-field class="app-field" label="手机号" placeholder="请输入手机号" v-model="loginForm.phoneNum">
         <mt-button @click="getVerifyCode" size="small" type="primary">获取验证码</mt-button>
       </mt-field>
       <mt-field class="app-field" label="短信验证码" placeholder="请输入短信验证码" v-model="loginForm.idCode"></mt-field>
-      <div class="list-item flex space-between">
-        <router-link to="/user/forgetPassword">
-          <p>忘记密码</p>
-        </router-link>
+      <div class="list-item flex flex-end">
         <router-link to="/user/register">
           <p>注册新账号</p>
         </router-link>
@@ -38,8 +35,8 @@ export default class Login extends Vue {
   data() {
     return {
       loginForm: {
-        phoneNum: '18396580005',
-        idCode: '1234',
+        phoneNum: '',
+        idCode: '',
       },
     };
   }

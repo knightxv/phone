@@ -2,7 +2,7 @@
   <div class="container">
     <div class="form-wrap">
       <mt-field label="昵称" placeholder="2-16个字符" v-model="form.wechatName"></mt-field>
-      <mt-field label="手机号" v-model="form.phoneNum">
+      <mt-field label="手机号" placeholder="请输入手机号" v-model="form.phoneNum">
         <mt-button @click="getVerifyCode" size="small" type="primary">获取验证码</mt-button>
       </mt-field>
       <mt-field label="短信验证码" placeholder="请输入短信验证码" v-model="form.idCode"></mt-field>
@@ -15,16 +15,22 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import { IUserInfoState } from '../../stores/modules/userInfo';
+import { Mutation, Action } from 'vuex-class';
+import { UPDATE_USER_INFO } from '../../stores/mutation-types';
+import { UPDATE_USER_ACCOUNT_INFO_ASYNC } from '@/stores/action-types';
 import ApiCom from '@/services/common';
 import ApiAccount from '@/services/account';
 @Component
 export default class Register extends Vue {
+  @Mutation UPDATE_USER_INFO!: (userInfo: IUserInfoState) => {};
+  @Action UPDATE_USER_ACCOUNT_INFO_ASYNC!: () => {};
   data() {
     return {
       form: {
         username: '',
         password: '',
-        phoneNum: '18396580005',
+        phoneNum: '',
         idCode: '',
       },
     };
@@ -46,6 +52,9 @@ export default class Register extends Vue {
       return;
     }
     this.$message.success('注册成功');
+    this.UPDATE_USER_INFO(res.data);
+    this.UPDATE_USER_ACCOUNT_INFO_ASYNC();
+    this.$router.push('/home/match');
   }
 }
 </script>

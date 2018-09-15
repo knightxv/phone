@@ -6,7 +6,7 @@ import './mint-ui.less';
 import {
   Button, Field, Header, Cell, Tabbar, TabItem,
   TabContainer, TabContainerItem, DatetimePicker,
-  // Loadmore,
+  Loadmore, Navbar,
 } from 'mint-ui';
 Vue.component(Header.name, Header);
 Vue.component(Cell.name, Cell);
@@ -16,5 +16,6 @@ Vue.component(Tabbar.name, Tabbar);
 Vue.component(TabItem.name, TabItem);
 Vue.component(TabContainer.name, TabContainer);
 Vue.component(TabContainerItem.name, TabContainerItem);
-// Vue.component(Loadmore.name, Loadmore);
+Vue.component(Loadmore.name, Loadmore);
 Vue.component(DatetimePicker.name, DatetimePicker);
+Vue.component(Navbar.name, Navbar);
