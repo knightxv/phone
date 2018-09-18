@@ -1,13 +1,14 @@
 import Vue from 'vue';
 import { Commit } from 'vuex';
-import { UPDATE_MY_USER_INFO, UPDATE_USER_INFO } from '../mutation-types';
-import { TOKEN, MY_USER_INFO } from '../getters-types';
+import { UPDATE_MY_USER_INFO, UPDATE_USER_INFO, UPDATE_USER_WECHAT_INFO } from '../mutation-types';
+import { TOKEN, MY_USER_INFO, MY_WECHAT_INFO } from '../getters-types';
 import { UPDATE_USER_ACCOUNT_INFO_ASYNC } from '../action-types';
-import { IUserListItem } from '../../services/apiDataType';
+import { IUserListItem, IWechatInfo } from '../../services/apiDataType';
 import ApiUser from '@/services/user';
 export interface IUserInfoState {
   token: string;
-  accountDTO: IUserListItem;
+  accountDTO: IUserListItem | null;
+  wxMpUserDTO: IWechatInfo | null;
 }
 interface IStore {
     commit: Commit;
@@ -17,7 +18,8 @@ interface IStore {
 export default {
     state: {
       token: '',
-      accountDTO: {},
+      accountDTO: null,
+      wxMpUserDTO: null,
     } as IUserInfoState,
     mutations: {
       [UPDATE_MY_USER_INFO](state: IUserInfoState, newUserInfo: IUserListItem) {
@@ -25,13 +27,17 @@ export default {
           ...state.accountDTO,
           ...newUserInfo,
         };
-    },
-    [UPDATE_USER_INFO](state: IUserInfoState, newUserInfo: IUserInfoState) {
-        // tslint:disable-next-line:forin
-        for (const attr in newUserInfo) {
-            Vue.set(state, attr, (newUserInfo as any)[attr]);
-        }
-    },
+      },
+      [UPDATE_USER_INFO](state: IUserInfoState, newUserInfo: IUserInfoState) {
+          // tslint:disable-next-line:forin
+          for (const attr in newUserInfo) {
+              Vue.set(state, attr, (newUserInfo as any)[attr]);
+          }
+      },
+      [UPDATE_USER_WECHAT_INFO](state: IUserInfoState, wxMpUserDTO: IWechatInfo) {
+        console.log('UPDATE_USER_WECHAT_INFO', wxMpUserDTO);
+        Vue.set(state, 'wxMpUserDTO', wxMpUserDTO);
+      },
     },
     actions: {
       async [UPDATE_USER_ACCOUNT_INFO_ASYNC]({ commit }: IStore) {
@@ -56,8 +62,11 @@ export default {
       [TOKEN](state: IUserInfoState): string {
         return state.token;
       },
-      [MY_USER_INFO](state: IUserInfoState): IUserListItem {
-          return state.accountDTO;
+      [MY_USER_INFO](state: IUserInfoState): IUserListItem | any {
+          return state.accountDTO || {};
+      },
+      [MY_WECHAT_INFO](state: IUserInfoState): IWechatInfo | any {
+          return state.wxMpUserDTO || {};
       },
     },
 };

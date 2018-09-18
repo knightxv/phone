@@ -24,4 +24,14 @@ export default {
   getAccountInfo() {
     return http.get('/api-account/appAccount/getAccountInfo');
   },
+  wechatLogin(code: string) {
+    const params = {
+      code,
+      systemType: 'LIVEAPP',
+    };
+    return http.post('/api-account/appAccount/wechatLogin', params);
+  },
+  bindingPhone(params: any) {
+    return http.post('/api-account/appAccount/bindingPhone', params);
+  },
 };

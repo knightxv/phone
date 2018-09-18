@@ -80,7 +80,7 @@ export default class MatchSchedule extends Vue {
   background: #fff;
   padding: 20px 16px;
   box-sizing: border-box;
-  border-bottom: 1px solid #e9eaec;
+  .border-bottom();
 }
 .team-name {
   width: 260px;
@@ -95,7 +95,7 @@ export default class MatchSchedule extends Vue {
   font-size: 1.2em;
 }
 .item-extra-info {
-  color: #cec6c6;
+  color: @gray;
 }
 .schedule-name {
   width: 360px;

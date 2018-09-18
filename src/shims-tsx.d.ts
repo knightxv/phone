@@ -13,4 +13,8 @@ declare global {
   interface NodeRequire {
     context: (path: string, deepSearch: boolean, testReg: RegExp) => any;
   }
+  interface Window {
+    wx: any;
+  }
 }
+

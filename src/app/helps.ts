@@ -31,3 +31,18 @@ export const formatDate = (time: number | Date, format: string = 'yyyy-MM-dd hh:
 export const formatDateBySecTime = (secTime: number, format: string = 'yyyy-MM-dd') => {
   return formatDate(secTime * 1000, format);
 };
+
+// 得到今天(0:0:0)的时间戳(不传默认今天)
+export const getDayTimeStamp = (timeStamp: number | null = null) => {
+  let now = new Date();
+  if (timeStamp) {
+    now = new Date(timeStamp);
+  }
+  const monthLabel = formatDate(now, 'yyyy/MM/dd');
+  return new Date(monthLabel).getTime();
+};
+
+export const inWechatBrowser = () => {
+  const ua = navigator.userAgent.toLowerCase();
+  return ua.indexOf('micromessenger') !== -1;
+};

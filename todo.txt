@@ -1,4 +1,6 @@
-TODO: 图片上传
 
-TODO: 性别
-TODO: navbar的title
+TODO: 微信分享
+TODO: 视频播放
+
+------
+TODO: 图片上传（ios）

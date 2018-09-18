@@ -13,4 +13,14 @@ export default {
   getTeams(matchId: number) {
     return http.get(`/api-liveapp/appMatchTeam/${matchId}`);
   },
+  getSchedule(scheduleId: number) {
+    return http.get(`/api-liveapp/appMatchSchedule/detail/${scheduleId}`);
+  },
+  /** 获取赛程分数 */
+  getMatchScheduleCount(matchScheduleId: number, matchPlayerActionTypes: string[]) {
+    return http.post(`/api-liveapp/appMatchData/matchScheduleCount`, {
+      matchPlayerActionTypes,
+      matchScheduleId,
+    });
+  },
 };

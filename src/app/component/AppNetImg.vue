@@ -21,10 +21,13 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
   computed: {
     imgSource() {
       const { imgUrl, errorImgUrl } = this.$props;
-      if (imgUrl) {
-        return `http://${this.$props.imgUrl}`;
+      if (!imgUrl) {
+        return '';
       }
-      return '';
+      if (/^http:\/\//.test(imgUrl)) {
+        return imgUrl;
+      }
+      return `http://${this.$props.imgUrl}`;
     },
   },
 })

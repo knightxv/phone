@@ -2,6 +2,7 @@
 import formatter from './formatter';
 import * as typeDef from './typeDef';
 import * as helps from './helps';
+import * as wechat from './wechat';
 import config from './config';
 import AppUploadImg from './component/AppUploadImg.vue';
 import AppNetImg from './component/AppNetImg.vue';
@@ -19,6 +20,7 @@ class App {
             typeDef,
             config,
             helps,
+            wechat,
         };
         Vue.prototype.$message = {
           success(message: string) {
@@ -36,6 +38,13 @@ class App {
         Vue.component('app-net-img', AppNetImg);
         Vue.component('app-local-img', AppLocalImg);
         Vue.component('app-icon', AppIcon);
+
+        Vue.directive('init-parent-height', {
+          update(el: any) {
+            console.log(el.parentNode.offsetHeight);
+            el.style.height = el.parentNode.offsetHeight + 'px';
+          },
+        });
     }
 }
 

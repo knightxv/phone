@@ -1,14 +1,14 @@
 <template>
-<div>
+<div v-if="userInfo.accountDTO && userInfo.accountDTO.accountId">
   <div class="header-userinfo">
     <div class="flex">
       <div class="user-avatar">
         <router-link to="/user/editInfo">
-          <app-net-img :imgUrl="myUserInfo.headImg" errorImgUrl="default_avatar" radius></app-net-img>
+          <app-net-img :imgUrl="userHeadImg" errorImgUrl="default_avatar" radius></app-net-img>
         </router-link>
       </div>
       <div class="user-info-wrap">
-        <div class="user-info-name">{{ myUserInfo.wechatName || '无名者2222' }}</div>
+        <div class="user-info-name">{{ userName || '未知用户' }}</div>
         <div class="role-tag">球迷</div>
       </div>
     </div>
@@ -25,6 +25,12 @@
     </router-link>
   </div>
 </div>
+<div v-else-if="userInfo.wxMpUserDTO && userInfo.wxMpUserDTO.openId" class="bind-phone-tip-container">
+  <mt-button type="primary" @click="goWechatBindPhonePage">微信绑定手机</mt-button>
+</div>
+<div v-else class="bind-phone-tip-container">
+  <mt-button type="primary" @click="goLoginPage">点击登陆</mt-button>
+</div>
 </template>
 
 <script lang="ts">
@@ -32,11 +38,26 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import { MY_USER_INFO } from '@/stores/getters-types';
 import { IUserListItem } from '@/services/apiDataType';
 import { Getter, Action, State } from 'vuex-class';
-@Component
+@Component({
+  computed: {
+    userHeadImg() {
+      const self = this as Mime;
+      return self.myUserInfo.headImg || self.userInfo.wxMpUserDTO.headImgUrl;
+    },
+    userName() {
+      const self = this as Mime;
+      return self.myUserInfo.userName || self.userInfo.wxMpUserDTO.nickname;
+    },
+  },
+})
 export default class Mime extends Vue {
   @Getter(MY_USER_INFO) myUserInfo!: IUserListItem;
-  created() {
-    console.log(this.myUserInfo);
+  @State userInfo!: any;
+  goLoginPage() {
+    this.$router.push('/login');
+  }
+  goWechatBindPhonePage() {
+    this.$router.push('/wechat/bindPhone');
   }
 }
 </script>
@@ -70,4 +91,10 @@ export default class Mime extends Vue {
 // .possessions-info-module {
 //   margin-top: 20px;
 // }
+.bind-phone-tip-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 </style>

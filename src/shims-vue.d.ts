@@ -10,6 +10,10 @@ declare module 'mint-ui';
 declare module 'fastclick';
 declare module 'vue-croppa';
 
+declare module 'vue-virtual-scroll-list';
+// https://www.vuetable.com/guide/fields-definition.html#field-options
+declare module 'vuetable-2';
+
 // declare module 'vue-lazyload';
 
 // declare module 'vue-icon-font-pro';

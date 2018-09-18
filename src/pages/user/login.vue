@@ -41,7 +41,11 @@ export default class Login extends Vue {
     };
   }
   async getVerifyCode() {
-    const res = await ApiCom.getPhoneIdCodeByLogin(this.$data.loginForm.phoneNum);
+    const { phoneNum } = this.$data.form;
+    if (!phoneNum) {
+      return;
+    }
+    const res = await ApiCom.getPhoneIdCodeByLogin(phoneNum);
     if (!res.isSuccess) {
       return;
     }

@@ -29,6 +29,28 @@ export interface IUserListItem {
   userName: string;
 }
 
+export interface IWechatInfo {
+  city: string;
+  country: string;
+  groupId: number;
+  headImgUrl: string;
+  language: string;
+  nickname: string;
+  openId: string;
+  privileges: string[];
+  province: string;
+  qrScene: string;
+  qrSceneStr: string;
+  remark: string;
+  sex: number;
+  sexDesc: string;
+  subscribe: boolean;
+  subscribeScene: string;
+  subscribeTime: number;
+  tagIds: number[];
+  unionId: string;
+}
+
 // lives
 export interface ILiveInfoData extends IApiData {
   data: {
@@ -102,16 +124,17 @@ export interface IMatchInfoItem {
   createUser?: number;
   deleted?: boolean;
   enabled?: 'ON' | 'OFF';
+  matchScheduleVOS: IMatchScheduleInfoItem[];
 }
 
 export interface IMatchScheduleInfoItem {
   createUser?: number;
-  homeCourtTeamId: number;
-  liveId: number;
+  homeCourtTeam: any;
+  liveId: any;
   matchAddress: string;
   matchScheduleName: string;
   matchId: number;
-  opponentTeamId: number;
+  opponentTeam: any;
   startTime: number;
 }
 

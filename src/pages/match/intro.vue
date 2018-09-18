@@ -58,6 +58,7 @@ export default class MatchIntro extends Vue {
 </script>
 
 <style scoped lang="less">
+@import url('../../main.less');
 .match-cover-img {
   height: 300px;
 }
@@ -66,12 +67,12 @@ export default class MatchIntro extends Vue {
   background: #fff;
 }
 .detail-list-item {
-  border-bottom: 1px solid #e9eaec;
   padding: 20px 8px;
+  .border-bottom();
 }
 .list-title {
   width: 200px;
-  color: #cec6c6;
+  color: @gray;
 }
 .list-info {
   width: 550px;

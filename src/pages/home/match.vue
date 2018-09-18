@@ -120,6 +120,7 @@ export default class Match extends Vue {
 .loadmore-body {
   padding: 15px;
   box-sizing: border-box;
+  min-height: calc(100vh - 94px);
 }
 .icon {
   font-size: 42px;

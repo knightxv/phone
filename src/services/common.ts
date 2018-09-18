@@ -22,4 +22,7 @@ export default {
   getPhoneIdCodeByLogin(phoneNum: string) {
     return this.getPhoneIdCode(phoneNum, 'ADD_ACCOUNT');
   },
+  getPhoneIdCodeByWechatBindPhone(phoneNum: string) {
+    return this.getPhoneIdCode(phoneNum, 'WX_BINDING_ACCOUNT');
+  },
 };

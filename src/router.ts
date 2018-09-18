@@ -34,7 +34,22 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/login',
+      redirect: '/transfer',
+    },
+    {
+      path: '/transfer',
+      component: () => import(/* webpackChunkName: "login" */ './pages/transfer.vue'),
+    },
+    {
+      path: '/wechat/login',
+      component: () => import(/* webpackChunkName: "wechatLogin" */ './pages/wechat/login.vue'),
+    },
+    {
+      path: '/wechat/bindPhone',
+      component: () => import(/* webpackChunkName: "WechatBindPhone" */ './pages/wechat/bindPhone.vue'),
+    },
+    {
+      path: '/',
       component: Layout,
       children: [
         {
@@ -104,6 +119,14 @@ export default new Router({
           },
         },
       ],
+    },
+    {
+      path: '/live/liveRoom/:scheduleId',
+      name: 'liveRoom',
+      component: () => import(/* webpackChunkName: "liveRoom" */ './pages/live/liveRoom.vue'),
+      meta: {
+        title: '直播间',
+      },
     },
   ],
 });

@@ -43,11 +43,11 @@ export default class MatchTeams extends Vue {
   background: #fff;
   padding: 20px 24px;
   box-sizing: border-box;
-  border-bottom: 1px solid #e9eaec;
+  .border-bottom();
 }
-.team-list-item {
+// .team-list-item {
   
-}
+// }
 .team-name {
   font-size: 1.2em;
 }
@@ -59,7 +59,7 @@ export default class MatchTeams extends Vue {
 }
 .team-coach-name {
   padding-top: 8px;
-  color: #cec6c6;
+  color: @gray;
   font-size: .9em;
 }
 </style>
