@@ -1,6 +1,9 @@
 
-TODO: 微信分享
-TODO: 视频播放
+
+轮播，广告
+
+// -----
+app [android, ios]
 
 ------
 TODO: 图片上传（ios）

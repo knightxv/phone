@@ -94,6 +94,7 @@ export default class ChatModule extends Vue {
 }
 .chat-module {
   flex: 1;
+  height: 100%;
   overflow: hidden;
 }
 .chat-input-wrap {
@@ -106,6 +107,7 @@ export default class ChatModule extends Vue {
   margin-right: 30px;
   border-radius: 8px;
   border: 1px solid #ccc;
+  min-width: 500px;
   height: 50px;
   padding: 0 10px;
 }

@@ -4,6 +4,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import ApiWechat from '@/services/wechat';
+import { BASE_URL } from '@/app/config';
 @Component
 export default class Transfer extends Vue {
   mounted() {
@@ -18,7 +19,7 @@ export default class Transfer extends Vue {
   }
   async jumpToWechatAuth() {
     const originUrl = window.location.origin;
-    const url = `${originUrl}/wechat/login`;
+    const url = `${originUrl}/${BASE_URL}/wechat/login`;
     const res = await ApiWechat.getOAuth2Url(url);
     if (!res.isSuccess) {
       this.$message.error('获取微信验证失败');

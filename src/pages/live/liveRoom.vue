@@ -1,7 +1,19 @@
 <template>
 <div class="container">
-  <live-player></live-player>
+  <live-player v-if="liveUrl" :liveUrl="liveUrl" :poster="livePoster"></live-player>
+  <div class="no-live-tip" v-else>
+    直播还未开播，请稍等!!!
+  </div>
   <div class="content-container">
+    <template v-if="matchScheduleSlideshows">  
+      <mt-swipe class="swiper">
+        <mt-swipe-item v-for="(item, index) in matchScheduleSlideshows" :key="index">
+          <div @click="onSwipeItemTouch(item)">
+            <app-net-img :imgUrl="item.coverImg" errorImgUrl="match_cover" />
+          </div>
+        </mt-swipe-item>
+      </mt-swipe>
+    </template>
     <mt-navbar v-model="active">
       <mt-tab-item v-for="(tab, index) in tabs" :key="index" :id="tab.id">
         {{ tab.label }}
@@ -52,10 +64,25 @@ export default class LiveRoom extends Vue {
         },
       ],
       liveId: undefined,
+      liveUrl: '',
+      livePoster: '',
+      matchScheduleSlideshows: null,
     };
   }
   mounted() {
    this.getScheduleInfo();
+   this.getMatchScheduleSlideshow();
+  }
+  async getMatchScheduleSlideshow() {
+    const scheduleId = this.$route.params.scheduleId;
+    const res = await ApiMatch.matchScheduleSlideshow(scheduleId);
+    if (!res.isSuccess) {
+      return;
+    }
+    if (res.data[0] == null) {
+      return;
+    }
+    this.$data.matchScheduleSlideshows = res.data[0].slideshowVO.slideshowContentVOS;
   }
   async getScheduleInfo() {
     const scheduleId = this.$route.params.scheduleId;
@@ -68,6 +95,8 @@ export default class LiveRoom extends Vue {
       return;
     }
     this.$data.liveId = liveInfo.id;
+    this.$data.liveUrl = liveInfo.phoneLiveUrl;
+    this.$data.livePoster = `http://${liveInfo.coverImage}`;
     const { wechatShareIco, wechatShareRemark, wechatShareTitle, liveTitle } = liveInfo;
     const originUrl = window.location.origin;
     const shareUrl = window.location.href.split('#')[0];
@@ -77,6 +106,15 @@ export default class LiveRoom extends Vue {
       link: shareUrl,
       imgUrl: wechatShareIco || `${originUrl}/share_default.jpg`,
     });
+  }
+  onSwipeItemTouch(slideContent: any) {
+    if (slideContent == null) {
+      return;
+    }
+    const { slideshowContentType, id, link } = slideContent;
+    if (slideshowContentType === 'URL_LINK' && link) {
+      console.log('jump to', link);
+    }
   }
 }
 </script>
@@ -92,10 +130,25 @@ export default class LiveRoom extends Vue {
   flex: 1;
 }
 .tab-container {
-  padding-top: 20px;
+  // padding-top: 20px;
+  height: 100%;
   flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 .tab-item-container {
-  height: 100%; 
+  // flex: 1;
+  height: 100%;
+  position: absolute;
+}
+.no-live-tip {
+  height: 350px;
+  background: #000;
+  line-height: 350px;
+  text-align: center;
+  color: #fff;
+}
+.swiper {
+  height: 250px;
 }
 </style>

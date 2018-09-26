@@ -14,6 +14,12 @@ declare module 'vue-virtual-scroll-list';
 // https://www.vuetable.com/guide/fields-definition.html#field-options
 declare module 'vuetable-2';
 
+// [demo] https://surmon-china.github.io/vue-video-player/
+// [doc] https://docs.videojs.com/tutorial-options.html
+declare module 'vue-video-player';
+declare module 'video.js';
+declare module 'videojs-contrib-hls/*';
+
 // declare module 'vue-lazyload';
 
 // declare module 'vue-icon-font-pro';

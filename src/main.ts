@@ -22,6 +22,32 @@ if ('addEventListener' in document) {
     },
     false,
   );
+  // 解决videojs下，重复点击问题
+  const deviceIsWindowsPhone = navigator.userAgent.indexOf('Windows Phone') >= 0;
+  const deviceIsIOS = /iP(ad|hone|od)/.test(navigator.userAgent) && !deviceIsWindowsPhone;
+  Fastclick.prototype.needsClick = (target: any) => {
+    switch (target.nodeName.toLowerCase()) {
+      // Don't send a synthetic click to disabled inputs (issue #62)
+      case 'button':
+      case 'select':
+      case 'textarea':
+        if (target.disabled) {
+          return true;
+        }
+        break;
+      case 'input':
+        // File inputs need real clicks on iOS 6 due to a browser bug (issue #68)
+        if ((deviceIsIOS && target.type === 'file') || target.disabled) {
+          return true;
+        }
+        break;
+      case 'label':
+      case 'iframe': // iOS8 homescreen apps can prevent events bubbling into frames
+      case 'video':
+        return true;
+    }
+    return (/\bneedsclick\b/).test(target.className) || /\bvjs/.test(target.className);
+  };
 }
 
 Vue.config.productionTip = false;

@@ -192,9 +192,11 @@ export default class Live extends Vue {
 .schedule-item-block {
   width: 490px;
   height: 100%;
+  padding: 10px 0;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 .schedule-intro-item-left {
   width: 200px;

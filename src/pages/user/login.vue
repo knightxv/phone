@@ -9,9 +9,11 @@
       </mt-field>
       <mt-field class="app-field" label="短信验证码" placeholder="请输入短信验证码" v-model="loginForm.idCode"></mt-field>
       <div class="list-item flex flex-end">
-        <router-link to="/user/register">
-          <p>注册新账号</p>
-        </router-link>
+        <p>
+          <router-link to="/user/register">
+            注册新账号
+          </router-link>
+        </p>
       </div>
     </div>
     <div class="list-item">
@@ -41,7 +43,7 @@ export default class Login extends Vue {
     };
   }
   async getVerifyCode() {
-    const { phoneNum } = this.$data.form;
+    const { phoneNum } = this.$data.loginForm;
     if (!phoneNum) {
       return;
     }

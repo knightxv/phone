@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="form-wrap">
+    <div class="form-wrap app-field">
       <mt-field label="昵称" placeholder="2-16个字符" v-model="form.wechatName"></mt-field>
       <mt-field label="手机号" placeholder="请输入手机号" v-model="form.phoneNum">
         <mt-button @click="getVerifyCode" size="small" type="primary">获取验证码</mt-button>

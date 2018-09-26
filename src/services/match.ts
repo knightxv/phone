@@ -23,4 +23,8 @@ export default {
       matchScheduleId,
     });
   },
+  /** 赛事幻灯片列表 */
+  matchScheduleSlideshow(matchScheduleId: string) {
+    return http.get(`/api-liveapp/appMatchScheduleSlideshow/${matchScheduleId}`);
+  },
 };
